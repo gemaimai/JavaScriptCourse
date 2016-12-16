@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width: 400px;
+            height: 400px;
+            background: #ccc;
+            margin:50px auto;
+            box-shadow:0 0 10px chartreuse;
+            text-align: center;
+            font-size: 100px;
+            line-height: 200px;
+        }
+        #div1 input{
+            width: 100px;
+            height: 30px;
+            background: chartreuse;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <p id="p1">姓名</p>
+    <div>
+        <input id="bt1" type="button" value="开始">
+        <input id="bt2" type="button" value="随机十次">
+    </div>
+</div>
+<script >
+    var arrName = ["黄根宝","龙洪","李艳刚","汪奇","吕继松",
+        "刘帅帅","蒋明","周彤","张佰超","龙珍妮","唐斌","韩玉","范祥龙","倪立帆","张兵兵","江玉",
+        "曹铁锋","施伟","许冬辉","李梦迪","杨海洋","任雷雷","孙晓","金飞","汪义兵","刘俊杰",
+        "徐步欣","何欣锦","周浩","吴许林","王权","王杰","赵亮亮","李申","陈波",
+        "杨冬","熊玮","陈佳慧","董瑞","杨俊杰","户雪涛","王志田","高思康",
+        "朱英杰","赵清泉","岳阳","杨婕","叶慧敏","孙成成","胡金亮","徐忠杰","孙尚阳",
+        "蔡栋栋","蔡延伟","陈贝","牛运涛","刘翔宇","邢造金","张丰","张见",
+        "陈子龙","张益","张跃"];
+
+    var oP1=document.getElementById("p1");
+    var oBt=document.getElementById("bt1");
+    var oBt2=document.getElementById("bt2");
+    document.addEventListener("keydown",FnRandomName,false);
+    oBt.addEventListener("click",FnRandomName,false);
+    var isRandomRun=false;
+    var timer=null;
+    function FnRandomName(event){
+        if(event.type=="keydown"){
+            if(event.keyCode==32){
+                startRandomName();
+            }
+        }else if(event.type=="click"){
+            startRandomName();
+            this.blur();
+        }
+    }
+
+    function startRandomName(){
+        if(isRandomRun){
+            isRandomRun=!isRandomRun;
+            oBt.style.background="chartreuse";
+            oBt.value="开始";
+            clearInterval(timer);
+        }else{
+            isRandomRun=!isRandomRun;
+            oBt.style.background="red";
+            oBt.value="结束";
+            clearInterval(timer);
+            timer=setInterval(randomName,100);
+        }
+    }
+
+    function randomName(){
+        var index=Math.floor(Math.random()*arrName.length);
+        oP1.innerHTML=arrName[index];
+    }
+
+    oBt2.addEventListener("click",FnRandomName10,false);
+
+    var count=0;
+    function FnRandomName10(){
+        oBt2.style.background="red";
+        clearInterval(timer);
+        count=0;
+        timer=setInterval(function(){
+            if(count<10){
+                randomName();
+                count++;
+                oBt2.value="第"+count+"次";
+            }
+            else{
+                clearInterval(timer);
+                oBt2.style.background="chartreuse";
+                oBt2.value="随机十次";
+            }
+        },100);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var animals =["dog","cat","cat","dog"];
+    var result=[];//[["dog",2],["cat",2]];
+    for(var i=0;i<animals.length;i++){
+        var isEx=false;
+        for(var j=0;j<result.length;j++){
+            if(animals[i]==result[j][0]){
+                isEx=true;
+                result[j][1]++;
+            }
+        }
+        if(!isEx){
+            result.push([animals[i],1]);
+        }
+    }
+    alert(result);
+
+    var s="abcdefg";
+    var arr= s.split("c");//["ab","defg"]
+    console.log(arr);
+</script>
+</body>
+</html>

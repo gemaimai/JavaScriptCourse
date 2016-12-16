@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>oo</title>
+</head>
+<body>
+<script>
+    function Shape(color){
+        this.color=color;
+        this.getColor=function(){
+            return this.color;
+        }
+        this.setColor=function(col){
+            this.color=col;
+        }
+    }
+
+    function Rectangle(color,width,height){
+        Shape.call(this,color);
+        this.getArea=function(){
+            return width*height;
+        }
+
+    }
+
+    function Circle(color,r){
+        Shape.apply(this,[color]);
+        this.getArea=function(){
+            return Math.PI*r*r;
+        }
+    }
+
+    var shape=new Shape("red");
+    dw(shape.getColor());
+    shape.setColor("ccc");
+
+    var rectangle=new Rectangle("blue",10,20);
+    dw(rectangle.getColor());
+    dw(rectangle.getArea());
+
+    function dw(param){
+        document.write(param);
+        document.write("<br/>")
+    }
+
+
+    Sass
+
+    svn
+
+    git
+</script>
+</body>
+</html>

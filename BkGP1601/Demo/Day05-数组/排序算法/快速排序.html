@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速排序</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <div>
+        <input id="bt1" value="快速排序" type="button"/>
+    </div>
+    <div id="div2"></div>
+    <script>
+        //定义数组
+        var arr=[];
+        //配置数组元素个数
+        var arrLength=10;
+        //用随机、四舍五入生成数组元素
+        for(var i=0;i<arrLength;i++){
+            var item=Math.round(Math.random()*100);
+            arr[i]=item;
+        }
+        document.getElementById("div1").innerHTML="原始数组为:"+arr.toString();
+
+
+        var oBt=document.getElementById("bt1");
+        oBt.onclick= function () {
+            quickSort(arr,0,arrLength-1);
+            document.getElementById("div2").innerHTML="原始数组排序后为:"+arr.toString();
+        }
+
+        function quickSort(arr,indexStart,indexEnd){
+            if(indexEnd>indexStart){
+                var privotLoc = partition(arr,  indexStart,  indexEnd);  //将表一分为二
+                quickSort(arr,  indexStart,  privotLoc -1);          //递归对低子表递归排序
+                quickSort(arr,   privotLoc + 1, indexEnd);        //递归对高子表递归排序
+            }
+        }
+        function swap(arr,index1,index2)
+        {
+            var temp = arr[index1];
+            arr[index1] =  arr[index2];
+            arr[index2] = temp;
+        }
+        function partition(arr,indexStart,indexEnd){
+            var privotKey=arr[indexStart];
+            while(indexStart<indexEnd){
+                while(indexStart < indexEnd  && arr[indexEnd] >= privotKey)
+                {
+                    indexEnd--;
+                }  //从high 所指位置向前搜索，至多到low+1 位置。将比基准元素小的交换到低端
+                swap(arr,indexStart,indexEnd);
+                while(indexStart < indexEnd  && arr[indexStart] <= privotKey ) indexStart++;
+                swap(arr,indexStart,indexEnd);
+            }
+            return indexEnd;
+        }
+    </script>
+</body>
+</html>

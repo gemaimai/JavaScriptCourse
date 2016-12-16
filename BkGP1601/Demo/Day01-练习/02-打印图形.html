@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打印图形</title>
+</head>
+<body>
+    <script>
+        var i=1;
+        while(i<=4){
+            var j=1;
+            while(j<=i){
+                document.write("*");
+                j++;
+            }
+            document.write("<br/>");
+            i++;
+        }
+        document.write("<hr/>");
+        for(var i=1;i<=4;i++){
+            for(var j=1;j<=10;j++){
+                document.write("*");
+            }
+            document.write("<br/>");
+        }
+        document.write("<hr/>");
+        for( var i=1;i<=4;i++){
+            for(var j=1;j<=i;j++){
+                document.write("*");
+            }
+            document.write("<br/>");
+        }
+        document.write("<hr/>");
+        for(var i=1;i<=3;i++){
+            for(var j=1;j<=4-i;j++){
+                document.write("*");
+            }
+            document.write("<br/>");
+        }
+        document.write("<hr/>");
+        for(var i=1;i<=5;i++){
+            for(var j=1;j<=5;j++){
+                if(j<=5-i){
+                    document.write("&ensp;");
+                }else{
+                    document.write("*");
+                }
+            }
+            document.write("<br/>");
+        }
+        document.write("<hr/>");
+        var flag=Math.floor(7/2);
+        for(var i=0;i<4;i++){
+            var min=flag-i;
+            var max=flag+i;
+            for(var j=0;j<7;j++){
+                if(j>=min&&j<=max){
+                    document.write("*");
+                }else{
+                    document.write("&ensp;");
+                }
+            }
+            document.write("<br/>");
+        }
+        document.write("<hr/>");
+
+        var flag=Math.floor(7/2);
+        var min=0;
+        var max=6;
+        for(var i=0;i<4;i++){
+            for(var j=0;j<7;j++){
+                if(j>=min&&j<=max){
+                    document.write("*");
+                }else{
+                    document.write("&ensp;");
+                }
+            }
+            min++;
+            max--;
+            document.write("<br/>");
+        }
+        document.write("<hr/>");
+    </script>
+</body>
+</html>

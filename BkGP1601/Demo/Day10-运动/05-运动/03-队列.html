@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: #000;
+        }
+    </style>
+    <script src="js/jquery-2.2.4.js"></script>
+</head>
+<body>
+<input type="button" value="开始" />
+<input type="button" value="停止"/>
+<div></div>
+
+<script>
+    $("input:eq(0)").click(function(){
+        var div=$("div");
+        /*div.animate({height:'600px',opacity:'0.4'},5000,function(){
+            //alert(1);
+        });
+       div.animate({width:'600px',opacity:'0.8'},5000,function(){
+            //alert(2);
+        });
+        div.animate({height:'100px',opacity:'0.4'},5000,function(){
+            //alert(3);
+        });
+        div.animate({width:'100px',opacity:'0.8'},5000,function(){
+            //alert(4);
+        });*/
+
+        div.animate({height:"600px",opacity:"0.4"},5000)
+                .animate({width:"600px",opacity:"0.8"},5000)
+                .animate({height:"100px",opacity:"0.4"},5000)
+                .animate({width:"100px",opacity:"0.8"},5000);
+
+
+    });
+    $("input:eq(1)").click(function(){
+        var div=$("div");
+        div.stop(false,true);
+        //两个参数：
+        //第一个参数，代表是否停止清除 队列后面的动画；
+        //第二个参数，代表是否立即到达当前动画的目标值。
+
+        //false ，false   停止当前动画，并且保持当前状态。然后执行队列后面的动画。
+        //true ,false     停止当前动画，并且清除队列后面的动画。
+        //true,true       停止当前动画，并且清除队列后面的动画。  当前动画，立即到达目标值。
+        //false,true.     停止当前动画，立即到达当前目标值。然后执行队列后面的动画。
+    })
+</script>
+</body>
+</html>

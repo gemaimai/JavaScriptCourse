@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8;">
+	<title>计算器</title>
+	<style type="text/css">
+		*{margin:0;padding:0;font-size:14px; font-family:Arial;}
+		.container{
+			width:400px;
+			height:501px;
+			border:solid 1px #DCA55F;
+			background:#F2F2F2;
+			margin:30px auto;
+			box-shadow:7px 7px 5px #999;
+		}
+		.calculation input{
+			width:390px;
+			height:90px;
+			border:0px;
+			border-bottom:solid 1px #DADADA;
+			font-family:Arial;
+			text-align:right;
+			font-size:60px;
+			padding-right:10px;
+			background:#F2F2F2;
+		}
+		.container ul li{
+			list-style:none;
+			float:left;
+			width:100px;
+			height:82px;
+			background:#E6E6E6;
+			font-size:32px;
+			text-align:center;
+			line-height:82px;
+			cursor:pointer;
+		}
+		.container ul li:hover{
+			background:#CFCFCF;
+		}
+		.container ul li:active{
+			background:#B8B8B8;
+		}
+		.container .on:hover{
+			background:#CC8329;
+			color:#fff;
+		}
+		.container .on:active{
+			background:#D4A162;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="calculation"><input type="text" value="0" id="result" /></div>
+		<ul>
+			<li>CE</li>
+			<li>C</li>
+			<li>&larr;</li>
+			<li onclick="calculator('/')">&divide;</li>
+			<li onclick="calculator('7')">7</li>
+			<li onclick="calculator('8')">8</li>
+			<li onclick="calculator('9')">9</li>
+			<li onclick="calculator('*')">&times;</li>
+			<li onclick="calculator('4')">4</li>
+			<li onclick="calculator('5')">5</li>
+			<li onclick="calculator('6')">6</li>
+			<li onclick="calculator('-')">-</li>
+			<li onclick="calculator('3')">3</li>
+			<li onclick="calculator('2')">2</li>
+			<li onclick="calculator('1')">1</li>
+			<li onclick="calculator('+')">+</li>
+			<li>&plusmn;</li>
+			<li onclick="calculator('0')">0</li>
+			<li>.</li>
+			<li class="on" onclick="calculator('=')">=</li>
+		</ul>
+	</div>
+	<script>
+		var isClear = false;
+		var opt = "";
+		var oldData = "";
+		
+		function calculator(str){
+			if(str == "+" || str == "-" || str == "*" || str == "/" || str == "="){
+				result.value = calculation(oldData,result.value,opt);
+				isClear = true;
+				opt = str;
+				oldData = result.value;
+			}
+			else{	
+				if(result.value == "0" || isClear == true){
+					result.value = "";
+					isClear = false;
+				}
+				result.value += str;
+			}
+		}
+		
+		
+		function calculation(num1,num2,opt){
+			var count = num2;
+			switch(opt){
+				case "+":
+					count = Number(num1) + Number(num2);
+					break;
+				case "-":
+					count = Number(num1) - Number(num2);
+					break;
+				case "*":
+					count = Number(num1) * Number(num2);
+					break;
+				case "/":
+					count = Number(num1) / Number(num2);
+					break;
+			}
+			return count;
+		}
+	</script>
+</body>
+</html>

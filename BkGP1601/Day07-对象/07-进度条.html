@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>进度条</title>
+    <script type="text/javascript">
+        window.onload=function(){
+            var loaddiv=document.getElementById("loaddivid");
+            var spanText=document.getElementById("spanTextid");
+            var timer=setInterval(function(){
+                var w = loaddiv.style.width.replace("%","");
+                w++;
+                spanText.innerHTML = w + "%";
+                loaddiv.style.width = w + "%";
+                if(w == 100){
+                    clearInterval(timer);
+                }
+            },40);
+        }
+    </script>
+</head>
+<body>
+<div style="width:300px; height:32px; border:solid 1px #91B2C3; border-radius: 12px; margin: 60px auto;">
+    <div id="loaddivid" style="width:0%; height:32px; background: #99D8F5; border-radius: 12px;"></div>
+    <span id="spanTextid" style="font-family: arial; font-size: 14px; color: #4CBDF1;display: block; width:100%;text-align: center; padding-top: 6px;">1%</span>
+</div>
+</body>
+</html>

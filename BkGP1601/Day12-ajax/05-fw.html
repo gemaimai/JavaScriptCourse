@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="js/moveUtil.js"></script>
+</head>
+<body>
+<div></div>
+    <script>
+        //图片列的宽度
+        var imgWidth=300;
+        //可视区域宽度
+        var clientWidth=document.documentElement.clientWidth||document.body.clientWidth;
+        //计算出可以摆放的列数。
+        var columnCount=Math.min(Math.max(Math.floor(clientWidth/imgWidth),2),6); // [2-6] 边界2-6 之间。
+
+        //记录的加载的页码。
+        var pageIndex=1;
+
+        //初始化一个数组，记录列的高度。
+        var arrColumnHeight=[];
+        for(var i=0;i<columnCount;i++){
+            arrColumnHeight[i]=0;
+        }
+        //页面加载时，默认加载第一页数据。
+        ajaxImg(pageIndex);
+
+        //数据通过ajax获取成功后，需要做得业务处理
+        function loadImg(data){
+            var arrImgInfo=eval("("+data+")");
+            for(var i=0;i<arrImgInfo.length;i++){
+                //把图片显示到页面中。
+                var oImg=document.createElement("img");
+                oImg.src="img/"+arrImgInfo[i].url;
+                oImg.style.width=imgWidth+"px";
+                oImg.style.height=arrImgInfo[i].height+"px";
+                oImg.className="fwclass";
+
+                var columnIndex=getMinIndex();//列号  从0开始；
+                oImg.style.position="absolute";
+                oImg.style.top=arrColumnHeight[columnIndex]+10+"px";
+                oImg.style.left=(imgWidth+10)*columnIndex+"px";
+               /* oImg.style.top="0px";
+                oImg.style.left="0px";*/
+                document.body.appendChild(oImg);
+               /* var targetTop=arrColumnHeight[columnIndex];
+                var targetLeft=imgWidth*columnIndex;
+                startMove(oImg,{top:targetTop,left:targetLeft});*/
+                arrColumnHeight[columnIndex]+=arrImgInfo[i].height+10;
+            }
+        }
+
+        //获取最矮的列号，从0 开始。
+        function getMinIndex(){
+            var result=0;
+            for(var i=0;i<arrColumnHeight.length;i++){
+                if(arrColumnHeight[i]<arrColumnHeight[result]){
+                    result=i;
+                }
+            }
+            return result;
+        }
+        //获取最高的列号，从0开始
+        function getMaxIndex(){
+            var result=0;
+            for(var i=0;i<arrColumnHeight.length;i++){
+                if(arrColumnHeight[i]>arrColumnHeight[result]){
+                    result=i;
+                }
+            }
+            return result;
+        }
+
+        //窗口大小变化的时候，
+        window.onresize=function(){
+            //列的数量有所变化。
+            var clientWidth=document.documentElement.clientWidth||document.body.clientWidth;
+            var columnCountNew=Math.floor(clientWidth/imgWidth);
+            if(columnCountNew!=columnCount&&columnCountNew>=2){
+                columnCount=columnCountNew;
+                //当新的列数，与旧的列数不一致时，才对页面的图片进行重新布局。
+                //1.能够拿到所有的图片。
+                //要把所有的列的高度清零。
+                arrColumnHeight=[];
+                for(var i=0;i<columnCountNew;i++){
+                    arrColumnHeight[i]=0;
+                }
+                var arrImg=document.getElementsByTagName("img");
+                for(var i=0;i<arrImg.length;i++){
+                    var columnIndex=getMinIndex();//列号  从0开始；
+                    var targetTop=arrColumnHeight[columnIndex];
+                    var targetLeft=imgWidth*columnIndex;
+                    startMove(arrImg[i],{top:targetTop,left:targetLeft});
+                    arrColumnHeight[columnIndex]+=arrImg[i].offsetHeight;
+                }
+            }
+        }
+
+        //滚动页面时，动态加载数据。
+        document.onscroll=function(){
+            //
+            var clientHeight=document.documentElement.clientHeight||document.body.clientHeight;
+            var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+            var maxIndex=getMaxIndex();
+            var maxColumnHeight=arrColumnHeight[maxIndex];
+
+            //当页面可视区域的高度 与滚动的top 之和，大于图片列的高度时，表示图片已经到底，可以加载后续图片数据了。
+            if(clientHeight+scrollTop>=maxColumnHeight-200){
+                pageIndex++;
+                ajaxImg(pageIndex);
+            }
+        }
+
+        //简单封装的获取图片数据的ajax方法。
+        function ajaxImg(index){
+            //ajax 获取数据源。
+            var xhr;
+            if(window.XMLHttpRequest){
+                xhr=new XMLHttpRequest();
+            }else{
+                xhr=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4){
+                    if(xhr.status==200){
+                        loadImg(xhr.responseText);
+                    }else{
+                        console.log(xhr.status);
+                    }
+                }
+            }
+            xhr.open("get","data/imgdata"+index+".json",true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象创建</title>
+</head>
+<body>
+<script>
+    var person=new Object();
+    person.name="zhangsan";
+    person.name="zhangsan123";
+    person.age=100;
+
+    person.showName=function(){
+        alert(this.name);
+    }
+    person.showName();
+    alert(person.name);
+
+    //person.sibling={}
+
+    var personEx={
+        name:"zhangsan",
+        age:101,
+        showName:function(){
+            alert(this.name);
+        }
+    }
+    var arrr=[1,2,3,4,5];
+    var sName="12345";
+</script>
+</body>
+</html>

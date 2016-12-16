@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闰年计算</title>
+</head>
+<body>
+<div>闰年：四年一闰，百年不闰，四百年再闰。 例如，2000年是闰年，2100年则是平年。</div>
+<div>请输入计算年份<input type="text" value="2016" id="txt1"/>
+    <input type="button" value="计算是否闰年" id="bt1"/>
+</div>
+<div id="div1">是否闰年：</div>
+<script>
+    var oBt=document.getElementById("bt1");
+    oBt.onclick= function () {
+        var iYear=parseInt(document.getElementById("txt1").value);
+        if(iYear){
+            if(checkYear(iYear)){
+                document.getElementById("div1").innerHTML="是否闰年：是";
+            }else{
+                document.getElementById("div1").innerHTML="是否闰年：否";
+            }
+            if(checkYearEx(iYear)){
+                alert("是");
+            }else{
+                alert("否");
+            }
+        }else{
+            alert("输入有误");
+        }
+    }
+    function checkYear(iYear){
+        var isLeap=false;
+        if((iYear%4==0&&iYear%100!=0)||(iYear%400==0)){
+            isLeap=true;
+        }else{
+            isLeap=false;
+        }
+        return isLeap;
+    }
+    function checkYearEx(iYear){
+        var isLeap=false;
+        if(iYear%4==0){
+            isLeap=true;
+        }
+        if(iYear%100==0){
+            isLeap=false;
+        }
+        if(iYear%400==0){
+            isLeap=true;
+        }
+        return isLeap;
+    }
+
+</script>
+
+</body>
+</html>

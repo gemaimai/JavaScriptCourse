@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机数</title>
+</head>
+<body>
+    [0,1);  包含0 不包含1；
+    随机产生一个数字  0到100；
+    1. [1,100]  [0,100]
+    2. 整数；
+
+    随机产生一个数字， 100-200；
+
+    <p>
+        3.在100-400直接产生随机数；
+        如果随机数小于200，则返回200，
+        如果随机数大于300，在返回300；
+        如果随机数在200-300之间；返回这个随机数；
+    </p>
+<script>
+
+    var a=Math.floor(Math.random()*100+1); //[1,100]   100
+    var b1=Math.random()*101;//  [0,100.9999999]
+
+    var b=Math.floor(Math.random()*101);   //[0,100]    101
+
+
+    //[100,200];  101
+    var b=Math.floor(Math.random()*101)+100;
+    //随机出来的不包含b.
+    function randomEX(a,b){
+        return Math.floor(Math.random()*(b-a))+a;
+    }
+
+    //3.
+    function fn2(){
+        var c=Math.floor(Math.random()*300)+100;//100-400
+        document.write(c+"<br/>");
+        if(c<200){
+            c=200;
+        }else if(c>300){
+            c=300;
+        }
+        return c;
+    }
+
+    function fn(){
+        var nRan=Math.random()*300+100;
+        document.write(nRan+"<br/>");
+        return Math.min(Math.max(nRan,200),300);
+    }
+
+    var newLen=Math.floor(fn());
+    document.write(newLen+"<br/>");
+
+
+</script>
+</body>
+</html>

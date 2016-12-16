@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #di1{width: 400px;height:400px;background: #333;float: left;margin-right: 20px;position: relative}
+        #di2{width: 400px;height:400px;background: #333;float: left;margin-right: 20px;position: relative}
+        #di3{width: 400px;height:400px;background: #333;float: left;margin-right: 20px;position: relative}
+    </style>
+</head>
+<body>
+<div id="di1"></div>
+<div id="di2"></div>
+<div id="di3"></div>
+<input type="text" id="txt">
+<input type="button" value="开始" id="btn">
+<script type="text/javascript" src="js/eventUtil.js"></script>
+<script type="text/javascript" src="js/move.js"></script>
+<script>
+    function bgColor(){
+        var bg;
+        var r=Math.floor(Math.random()*256);
+        var g=Math.floor(Math.random()*256);
+        var b=Math.floor(Math.random()*256);
+        bg='rgb('+r+','+g+','+b+')';
+        return bg;
+    }
+    var di1=document.getElementById("di1");
+    var di2=document.getElementById("di2");
+    var di3=document.getElementById("di3");
+    var txt=document.getElementById("txt");
+    var btn=document.getElementById("btn");
+    var x;
+    var y;
+    btn.onclick=function(){
+        var ci=parseInt(txt.value);
+        for(var i=0;i<ci;i++){
+            var pan=document.createElement("div");
+            pan.style.width=50+20*i+"px";
+            pan.style.height=50+20*i+"px";
+            pan.style.background=bgColor();
+            pan.style.position="absolute";
+            pan.style.left=i*10+25+"px";
+            pan.style.top=i*10+25+"px";
+            di1.appendChild(pan);
+            pan.style.zIndex=50-i;
+            pan.onmousedown=function(){
+                pan.onmousemove=fn;
+                function fn(e) {
+                    e = e || window.event;
+                    y= e.clientY-25;
+                    x= e.clientX-25;
+                    pan.style.top =y + "px";
+                    pan.style.left =x + "px";
+                }
+            }
+            pan.onmouseup=function(){
+                pan.onmousemove=null;
+                pan.style.top =y + "px";
+                pan.style.left =x + "px";
+            }
+        }
+    }
+</script>
+</body>
+</html>

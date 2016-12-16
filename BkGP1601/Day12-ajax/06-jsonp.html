@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp</title>
+</head>
+
+<body>
+<input type="button" value="获取数据jsonp" id="bt1"/>
+<script>
+
+    var oBT=document.getElementById("bt1");
+    oBT.onclick=function(){
+        var jsc=document.createElement("script");
+        jsc.src="http://10.9.163.115/products/getproductsbypage?pagesize=10&pageindex=2&callback=fncallback";
+        document.body.appendChild(jsc);
+    }
+    function fncallback(param){
+        for(var i=0;i<param.length;i++){
+            alert(param[i].Name);
+        }
+    }
+</script>
+<!--<script src="http://10.9.163.115/products/getproductsbypage?pagesize=10&pageindex=2&callback=fncallback"></script>-->
+</body>
+</html>

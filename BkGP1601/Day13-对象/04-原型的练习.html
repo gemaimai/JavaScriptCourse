@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型练习</title>
+</head>
+<body>
+<script>
+    function Person(name,age){
+        this.name=name;
+        this.age=age;
+        this.showName=function(){
+            alert(this.name);
+        }
+    }
+    var person1=new Person("张三",10);//构造一个对象， person1 实例。   Person的一个实例person1；
+    alert(person1.name);//张三
+    person1.showName();//张三
+
+    alert(person1.id);//und
+    Person.prototype.showAge=function(){
+        alert(this.age);
+    }
+    Person.prototype.id=1234;
+    person1.showAge();//10
+    alert(person1.id);//1234
+
+    var person2=new Person("李四",22);
+    person2.showAge=function(){
+        alert(20);
+    }
+    person2.showAge();//20
+    person2.showAge();
+    alert(person2.id);//1234
+    person1.showAge();//10
+    alert(person1.id);//1234
+    //优先级的问题：
+</script>
+</body>
+</html>

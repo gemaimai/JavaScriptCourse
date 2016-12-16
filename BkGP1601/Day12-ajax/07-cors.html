@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cors</title>
+</head>
+<body>
+<div id="div1">
+
+</div>
+<script>
+    var xhr=new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4){
+            if(xhr.status==200){
+                var oDiv=document.getElementById("div1");
+                var result=JSON.parse(xhr.responseText);
+                oDiv.innerHTML=result.errMsg+result.retData.city+result.retData.weather;
+            }
+        }
+    }
+    xhr.open("get","http://apis.baidu.com/apistore/weatherservice/weather?citypinyin=jilin",true);
+    xhr.setRequestHeader("apikey","45d8173dfc35ce17924e1141a441258e");
+    xhr.send()
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>买鸡问题</title>
+</head>
+<body>
+<div>
+    一个人买鸡，一只公鸡5元、一只母鸡3元、小鸡1元3只，这人有100元钱要买100只鸡，一共可以有几种买法？（必须三种鸡都要买,100元要花光）
+</div>
+<div><input id="bt1" type="button" value="计算"/></div>
+<div id="div2"></div>
+<script>
+    var oBt=document.getElementById("bt1");
+    oBt.onclick= function () {
+        var aCount=Math.floor(100/5);
+        var bCount=Math.floor(100/3);
+        var cCount=Math.floor(100/1*3);
+        for(var i=1;i<=aCount;i++){
+            for(var j=1;j<=bCount;j++){
+                for(var k=1;k<=cCount;k++){
+                    var sum=i*5+j*3+k/3;
+                    if(sum==100&&(i+j+k)==100){
+                        document.getElementById("div2").innerHTML+="<p>公鸡："+i+";母鸡："+j+";小鸡："+k;+"<p/>";
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

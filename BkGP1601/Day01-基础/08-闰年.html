@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闰年</title>
+</head>
+<body>
+<input type="text" id="txt1" value="2016"/>
+<input type="button" id="bt1" value="检测" />
+<script>
+    var oBt=document.getElementById("bt1");
+    oBt.onclick= function () {
+        var oTxt=document.getElementById("txt1");//object Dom
+        var iYear=parseInt(oTxt.value);//2016
+        var isR=false;
+        if(iYear%4==0){
+           isR=true;
+        }
+        if(iYear%100==0){
+            isR=false;
+        }
+        if(iYear%400==0){
+            isR=true;
+        }
+        if(isR){
+            alert("是闰年");
+        }else{
+            alert("不是闰年");
+        }
+    }
+</script>
+</body>
+</html>

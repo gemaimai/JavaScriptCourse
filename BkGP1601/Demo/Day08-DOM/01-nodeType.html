@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nodeType</title>
+    <style>
+        div{
+            width:200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" name="divn1" data-gao="gao123" style="height: 900px;"></div>
+<div id="div2" name="divn2" style="height: 500px;background: blue">
+    <p>1</p>
+    <p>2</p>
+</div>
+<p id="p1"></p>
+<script>
+    /*alert(Node.ELEMENT_NODE);
+    var divs=document.getElementsByTagName("div");
+    alert(divs.item(1).id);
+    alert(divs["div1"].id);
+    alert(divs["divn1"].id);
+    var ss=divs[1].getElementsByTagName("p").length;
+    alert(divs[1].getElementsByTagName("p").length);
+    Node.prototype.getTest=function(){
+        alert(101);
+    }
+    divs.item(1).getTest();
+    console.log(document.getElementById("div2").outerHTML);
+    console.log(document.getElementById("div2").innerText);*/
+    var div1=document.getElementById("div1");
+    console.log(div1.getAttribute("data-gao"));
+    console.log(div1.style.width);
+    console.log(div1.getAttribute("style"));
+
+    console.log(window.getComputedStyle(div1,false)["width"]);
+    //console.log(div1.currentStyle["width"]);
+    var div2=document.getElementById("div2");
+    alert(div2.offsetTop);
+    div2.scrollIntoView();
+</script>
+
+</body>
+</html>

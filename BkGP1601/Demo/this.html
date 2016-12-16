@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+</head>
+<body>
+<script>
+    "use strict";
+    var name="window name";
+    alert(name.search("na"));
+    var aeee=name.match(/w/g);
+    alert(name.match("w"));
+    var oB={
+        name:"object name",
+        showName:function(){
+            //var name="fn name";
+            alert(this.name);
+            alert(name);
+            var fn=function(){
+                return name;
+            }
+            //alert(fn());
+            return fn;
+        }
+    }
+   alert(oB.showName()());
+</script>
+</body>
+</html>

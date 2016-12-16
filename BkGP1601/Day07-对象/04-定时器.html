@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器</title>
+</head>
+<body>
+<div id="div1">
+    <span>2016</span>-<span>08</span>-<span>10</span>--<span>11</span>:<span>50</span>
+</div>
+
+<input type="button" id="bt1" value="show 3"/>
+<input type="button" id="bt2" value="stop"/>
+ <script>
+     var oBt=document.getElementById("bt1");
+     var oDiv=document.getElementById("div1");
+     var timerid;
+     oBt.onclick=function(){
+         var timer2=setTimeout(function(){
+             alert(3);
+         },3000);
+         clearTimeout(timer2);
+         timerid=setInterval(function(){
+             var divValue=parseInt(oDiv.innerHTML);
+             if(divValue==0){
+                 clearInterval(timerid);
+             }else{
+                 divValue--;
+                 oDiv.innerHTML=divValue;
+             }
+         },1000);
+     }
+
+     var oBt2=document.getElementById("bt2");
+     oBt2.onclick=function(){
+        clearInterval(timerid);
+     }
+
+ </script>
+</body>
+</html>

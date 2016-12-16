@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 800px;
+            height: 400px;
+            margin: 5px auto;
+        }
+        li{
+            width: 50px;
+            float: left;
+            list-style: none;
+            overflow: hidden;
+        }
+        .active{
+            width:400px;
+        }
+    </style>
+    <script src="js/jquery-2.2.4.js"></script>
+</head>
+<body>
+<div>
+    <ul>
+        <li class="active"><img src="img/1.jpg"/></li>
+        <li><img src="img/2.jpg"/></li>
+        <li><img src="img/3.jpg"/></li>
+        <li><img src="img/4.jpg"/></li>
+        <li><img src="img/5.jpg"/></li>
+        <li><img src="img/6.jpg"/></li>
+    </ul>
+</div>
+<script>
+    $(function(){
+        $("li").mouseover(function(){
+            //1. 当前的图片宽度变为400px
+            //2. 其他图片宽度变为50px
+
+           /* var $th=$(this);
+            $th.stop();
+            $th.animate({width:"400px"},3000);
+            var $sib=$(this).siblings();
+            $sib.stop();
+            $sib.animate({width:"50px"},3000);*/
+
+            //变更操作对象的时候，换行
+            //同一个操作对象超过3中操作，，一般可以换行。
+
+            $(this).stop().animate({width:"400px"},3000)
+                    .siblings().stop().animate({width:"50px"},3000);
+
+            //$(this).stop().animate({"width":"400px"}).siblings().stop().animate({"width":"50px"});
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 810px;
+            height: 320px;
+            position: relative;
+            margin:  5px auto;
+        }
+        #div2{
+            width: 810px;
+            height: 320px;
+            position: absolute;
+            overflow: hidden;
+        }
+        .imgul{
+            width: 4050px;
+            list-style-type: none;
+            position: absolute;
+        }
+        li{
+            float: left;
+        }
+        .navul{
+            width: 100px;
+            height: 20px;
+            position: absolute;
+            top: 270px;
+            left: 600px;
+            list-style: none;
+        }
+        .navul li{
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            margin-left: 5px;
+        }
+        .lion{
+            background: darkolivegreen;
+        }
+        .liun{
+            background: blanchedalmond;
+        }
+    </style>
+    <script src="js/moveUtil.js"></script>
+</head>
+<body>
+<div id="div1">
+    <div id="div2">
+        <ul id="imgul" class="imgul">
+            <li class="imgli"> <img src="img/001.jpg"></li>
+            <li class="imgli"> <img src="img/002.jpg"></li>
+            <li class="imgli"> <img src="img/003.jpg"></li>
+            <li class="imgli"> <img src="img/004.jpg"></li>
+            <li class="imgli"> <img src="img/001.jpg"></li>
+        </ul>
+    </div>
+    <ul id="navulid" class="navul">
+        <li class="lion">1</li>
+        <li class="liun">2</li>
+        <li class="liun">3</li>
+        <li class="liun">4</li>
+    </ul>
+</div>
+<script>
+    var oUl=document.getElementById("imgul");
+    var oNav=document.getElementById("navulid");
+    var timer;
+    var pageIndex=1;
+    start();
+    function setPageIndex(index){
+        //index=2;
+        for(var i=0;i<oNav.children.length;i++){
+            oNav.children[i].className="liun";
+        }
+        if(index==5){
+            oNav.children[0].className="lion";
+        }else{
+            oNav.children[index-1].className="lion";
+        }
+    }
+
+    for(var i=0;i<oNav.children.length;i++){
+        oNav.children[i].onclick=function(){
+            //点击的那个页签，就需要显示那个对应图片
+            var index=parseInt(this.innerHTML);//1
+            var target={
+                left:-810*(index-1)
+            }
+            clearInterval(timer);
+            startMove(oUl,target,start);
+            pageIndex=index;
+            setPageIndex(index);
+        }
+    }
+
+    function  start(){
+        clearInterval(timer);
+        timer =setInterval(function(){
+            if(flag){
+                if(pageIndex==5){
+                    oUl.style.left=0;
+                    pageIndex=1;
+                }
+                var target={
+                    left:-810*pageIndex
+                }
+                startMove(oUl,target);
+                pageIndex++;
+                setPageIndex(pageIndex);//2,3,4,5;
+            }
+        },3000);
+    }
+
+    var flag=true;
+    oUl.onmouseover=function(){
+        flag=false;
+    }
+    oUl.onmouseout=function(){
+        flag=true;
+    }
+    /*
+    var oUl=document.getElementById("imgul");
+    var pageIndex=1;
+    var isPause=false;
+    var timer; //每个多长时间，就播放下一页
+    start();
+    var oBts=document.getElementById("navulid").children;
+    for(var i=0;i<oBts.length;i++){
+        //var ii=i;
+        oBts[i].onclick= function () {
+            //希望把第i 页图片，显示到中间；
+            //alert(ii);
+            clearInterval(timer);
+            if(pageIndex==5){
+                oUl.style.left=0;
+            }
+            var inner=parseInt(this.innerHTML);
+            //x修正一下轮播的顺序；
+            pageIndex=inner;
+            startMove(oUl,{left:-810*(inner-1)},start);
+            for(var j=0;j<oBts.length;j++){
+                oBts[j].className="liun";
+            }
+            this.className="lion";
+        }
+    }
+    function start(){
+        clearInterval(timer);
+        timer=setInterval(function(){
+            if(isPause) return;
+            if(pageIndex>4){
+                //把ul 拉回到最右端；
+                oUl.style.left=0;
+                //页码重新初始化为1；
+                pageIndex=1;  //1, 2, 3,4
+            }
+            startMove(oUl,{left:-810*pageIndex});
+            for(var j=0;j<oBts.length;j++){
+                oBts[j].className="liun";
+            }
+            if(pageIndex==4){
+                oBts[0].className="lion";
+            }else{
+                oBts[pageIndex].className="lion";
+            }
+            pageIndex++;
+        },2000);
+    }
+
+    var lis=document.getElementById("imgul").children;
+    for(var i=0;i<lis.length;i++){
+        lis[i].onmouseover= function () {
+            //暂停
+            isPause=true;
+        }
+        lis[i].onmouseout= function () {
+            //继续
+            isPause=false;
+        }
+    }*/
+</script>
+</body>
+</html>

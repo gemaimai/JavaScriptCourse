@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定位</title>
+</head>
+<body>
+<div id="div1" style="position: absolute;top: 100px;left: 100px;width: 100px;height:100px;background: red">
+    <div id="div3" style="width: 50px;height:50px;background: yellow">
+        <div id="div2" style="position: absolute;top: 100px;left: 100px;width: 100px;height:100px;background: blue">
+        </div>
+    </div>
+</div>
+<script>
+    var oDiv2=document.getElementById("div2");
+    alert(oDiv2.offsetParent.id);
+    alert(oDiv2.offsetTop);
+    alert(oDiv2.offsetLeft);
+    var oDiv1=document.getElementById("div1");
+    console.log(oDiv1.offsetParent);
+</script>
+</body>
+</html>

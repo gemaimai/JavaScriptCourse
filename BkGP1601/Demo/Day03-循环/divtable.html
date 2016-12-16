@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>divtable</title>
+    <style>
+        .div{
+            float: left;
+        }
+    </style>
+
+</head>
+<body>
+<div class="div" style="width:100px;height: 30px;background: red;border: 2px solid blue"></div>
+<div class="div1" style="width:100px;height: 30px;background: red;border: 2px solid yellow"></div>
+<div class="div1" style="width:100px;height: 30px;background: red;border: 2px solid blue"></div>
+<div class="div" style="width:100px;height: 30px;background: red;border: 2px solid blue"></div>
+<script>
+    /*var a=1;
+    var b=2;
+    (function(){
+        var a=b=5;
+    })();
+    alert(a);
+    alert(b);
+
+    var a = 10;
+    function test(){
+        alert(a);
+        var a = 20;
+        alert(a);
+    }
+    test();*/
+
+
+    alert(1);
+    var alert=function(){
+        document.write(2);
+    }
+    alert(3);
+
+    var car = new Array();
+    car['colour'] = 'red';
+    car['wheels'] = 4;
+    car['hubcaps'] = 'spinning';
+    car['age'] = 4;
+    alert(car);
+
+    var arrNum=[1,32,545,32,56,6,];
+    var iMax=Math.max.apply(this,arrNum);
+    alert(iMax);
+
+</script>
+</body>
+</html>

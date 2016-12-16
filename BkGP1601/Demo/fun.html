@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var sum=0;
+    function f(a){
+        f.sum+=a;
+        return f;
+    }
+    f.sum=0;
+    f.valueOf=function(){
+        return this.sum;
+    }
+    f.toString=function(){
+        var result=this.sum;
+        this.sum=0;
+        return result;
+    }
+    alert(f(1)(2)(3)(4)(5)(6));
+    alert(f(1)(2)(3)(4)(5)(6));
+
+</script>
+</body>
+</html>

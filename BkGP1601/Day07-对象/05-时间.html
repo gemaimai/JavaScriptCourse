@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间</title>
+</head>
+<body>
+    <div id="div1"><span>2016</span>-<span>08</span>-<span>10</span>--<span>11</span>:<span>50</span>--<span>50</span></div>
+    <div id="div2"><span>2016</span>-<span>08</span>-<span>10</span>--<span>11</span>:<span>50</span>--<span>50</span></div>
+    <script>
+        var oDiv1=document.getElementById("div1");
+        var spanList=oDiv1.getElementsByTagName("span");
+        setInterval(function(){
+            setDate();
+        },1000);
+        function setDate(){
+            var date=new Date();
+            var y=date.getFullYear();
+            var m=date.getMonth();
+            var d=date.getDate();
+            var h=date.getHours();
+            var mi=date.getMinutes();
+            var s=date.getSeconds();
+            spanList[0].innerHTML=y;
+            spanList[1].innerHTML=buwei(m);
+            spanList[2].innerHTML=buwei(d);
+            spanList[3].innerHTML=buwei(h);
+            spanList[4].innerHTML=buwei(mi);
+            spanList[5].innerHTML=buwei(s);
+        }
+        function buwei(param){
+            param="0"+param;
+            return param.substr(-2);
+        }
+        var oDiv2=document.getElementById("div2");
+        var spanList2=oDiv2.getElementsByTagName("span");
+        setInterval(function(){
+            setDate2();
+        },1000);
+        function setDate(){
+            var date=new Date();
+            var y=date.getFullYear();
+            var m=date.getMonth();
+            var d=date.getDate();
+            var h=date.getHours();
+            var mi=date.getMinutes();
+            var s=date.getSeconds();
+            spanList[0].innerHTML=y;
+            spanList[1].innerHTML=buwei(m);
+            spanList[2].innerHTML=buwei(d);
+            spanList[3].innerHTML=buwei(h);
+            spanList[4].innerHTML=buwei(mi);
+            spanList[5].innerHTML=buwei(s);
+        }
+    </script>
+</body>
+</html>

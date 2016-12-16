@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>date</title>
+</head>
+<body>
+<script>
+    var sDate=new Date();//当前时间。
+    dw(sDate.toString());//2016-08-08
+    dw(sDate.getFullYear());
+    dw(sDate.getMonth());// 0---7
+    dw(sDate.getDate())// 8
+
+    //sDate.setFullYear(2000);
+    sDate.setDate(sDate.getDate()+30); // 往后推迟30天；
+    dw(sDate.toString());
+    function  dw(a){
+        document.write(a);
+        document.write("<br/>");
+    }
+    function  dwEx(a){
+        document.write(a);
+        document.write("<hr/>");
+    }
+</script>
+</body>
+</html>

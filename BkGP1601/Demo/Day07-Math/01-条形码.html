@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条形码</title>
+</head>
+<body>
+<script>
+    var ma="690123456789";
+    var arrMa=ma.split("");
+    var sumOdd=0;
+    var sumEven=0;
+    for(var i=0;i<arrMa.length;i=i+2){
+        sumOdd+=parseInt(arrMa[i]);
+        sumEven+=parseInt(arrMa[i+1]);
+    }
+    var sum1=sumOdd+sumEven*3;
+    var i1=sum1%10;
+    var i2=10-i1;
+    if(i2==10){
+        i2=0;
+    }
+    document.write(ma+i2);
+</script>
+</body>
+</html>

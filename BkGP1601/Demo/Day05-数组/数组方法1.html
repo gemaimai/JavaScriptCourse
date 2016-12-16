@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组方法</title>
+</head>
+<body>
+<script>
+    var arr= new Array(10); //创建一个包含 10 个元素的数组
+    var aa={a:1};
+    var arr2= new Array('123',30 ,'56','1233333',aa,aa,aa,aa,aa,aa);//使用构造函数创建
+    var arr3 = [6,1,2,3,4,5];
+    var arr4=arr.concat(arr2,arr3);
+    //alert(arr4);
+    //alert(arr2.slice(1,-1));
+    //arr2.splice(1,1,4,5)
+    //alert(arr2);
+    //alert(arr2.lastIndexOf(aa,5));
+    //alert(arr2.indexOf(aa,9));
+    /*arr2.forEach(function(data,index,arr){
+        alert(data);
+        alert(index);
+        alert(arr);
+    })*/
+
+  /*  var checkNumericRange = function(value) {
+        if (typeof value !== 'number')
+            return false;
+        else
+            return value >= this.minimum && value <= this.maximum;
+    }
+
+    var numbers = [6, 12, "15", 16, "the", -12];
+
+    // The obj argument enables use of the this value
+    // within the callback function.
+    var obj = { minimum: 10, maximum: 20 }
+
+    var result = numbers.filter(checkNumericRange, obj);
+
+    document.write(result);*/
+
+    arr2.reverse();
+    alert(arr3.sort());
+
+</script>
+</body>
+</html>
